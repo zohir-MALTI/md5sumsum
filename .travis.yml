@@ -1,0 +1,25 @@
+language: python
+install:
+  - pip3 install progressbar2 # because it's shiny shiny ^^'
+jobs:
+  include:
+    - stage: quick tests
+      script: ./test.py 10 10 1
+    - # stage name not required, will continue to use `quick tests`
+      script: ./test.py 10   10 0.5
+    - script: ./test.py 10   10 0.1
+    - stage: medium tests
+      script: ./test.py 100  10 5
+    - script: ./test.py 100  10 1
+    - script: ./test.py 100  10 0.5
+    - script: ./test.py 100  10 0.1
+    - script: ./test.py 100  10 0.05
+    - stage: hard tests
+      script: ./test.py 1000 10 50
+    - script: ./test.py 1000 10 10
+    - script: ./test.py 1000 10 5
+    - script: ./test.py 1000 10 1
+    - script: ./test.py 1000 10 0.5
+    - script: ./test.py 1000 10 0.1
+    - script: ./test.py 1000 10 0.05
+    - script: ./test.py 1000 10 0.01
