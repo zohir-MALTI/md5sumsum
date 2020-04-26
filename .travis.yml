@@ -1,6 +1,11 @@
 language: python
 install:
   - pip3 install progressbar2 # because it's shiny shiny ^^'
+before_script:
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y
+  - source $HOME/.cargo/env
+  - cargo build
+  - cp target/debug/md5sumsum .
 jobs:
   include:
     - stage: quick tests
